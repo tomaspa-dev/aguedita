@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas · Aguedita Asalde Maza Atelier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Cormorant+SC:wght@300;400;500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="citas.css">
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <a href="index.html" class="nav-logo">
+            <div class="logo-badge">
+                <svg width="36" height="40" viewBox="0 0 36 40" fill="none">
+                    <text x="2" y="35" font-family="Cormorant, Georgia, serif" font-size="34"
+                          font-style="italic" font-weight="500" fill="#c9a96e" opacity="0.55">A</text>
+                    <text x="8" y="35" font-family="Cormorant, Georgia, serif" font-size="34"
+                          font-style="italic" font-weight="500" fill="#c9a96e">A</text>
+                </svg>
+            </div>
+            <div class="logo-text-wrap">
+                <span class="logo-name">Aguedita Asalde Maza</span>
+                <span class="logo-sub">Atelier · Lima</span>
+            </div>
+        </a>
+        <div id="user-info" class="hidden">
+            <span id="user-email" style="font-size: 0.8rem; color: var(--muted); margin-right: 1rem;"></span>
+            <button onclick="logout()" style="background:none; border:none; color:var(--gold); cursor:pointer; font-family:'Cormorant SC'; font-size:0.6rem; letter-spacing:0.1em;">CERRAR SESIÓN</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- VISTA: LOGIN CLIENTE -->
+        <div id="view-login" class="auth-card">
+            <h1 class="auth-title">Bienvenida</h1>
+            <span class="auth-sub">Ingresa para gestionar tus citas</span>
+            
+            <button class="btn-auth btn-google" id="btn-google-login" onclick="handleGoogleLogin()">
+                <svg viewBox="0 0 24 24" width="18" height="18" style="margin-right: 10px; vertical-align: middle;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                Continuar con Google
+            </button>
+
+            <div class="auth-sep">
+                <span>o</span>
+            </div>
+
+            <button class="btn-auth btn-guest" onclick="handleGuestLogin()" style="background: var(--bg3); color: var(--gold); border: 1px solid var(--gold3);">
+                Entrar como Invitado (Pruebas)
+            </button>
+
+            <div class="auth-footer">
+                ¿No tienes cuenta? <a href="#" onclick="switchView('register')">Regístrate aquí</a>
+            </div>
+        </div>
+
+        <!-- VISTA: REGISTRO CLIENTE -->
+        <div id="view-register" class="auth-card hidden">
+            <h1 class="auth-title">Crear Cuenta</h1>
+            <span class="auth-sub">Regístrate para empezar tu proyecto</span>
+            
+            <div class="form-group">
+                <label for="reg-name">Nombre Completo</label>
+                <input type="text" id="reg-name" class="form-control" placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+                <label for="reg-email">Correo Electrónico</label>
+                <input type="email" id="reg-email" class="form-control" placeholder="ejemplo@correo.com">
+            </div>
+            
+            <button class="btn-auth" id="btn-register" onclick="handleRegister()">
+                Registrarme
+            </button>
+
+            <div class="auth-footer">
+                ¿Ya tienes cuenta? <a href="#" onclick="switchView('login')">Ingresa aquí</a>
+            </div>
+        </div>
+
+        <!-- VISTA: DASHBOARD CLIENTE (Placeholder) -->
+        <div id="view-dashboard" class="dashboard-view hidden">
+            <div style="text-align: center; padding: 4rem;">
+                <h2 class="auth-title" style="font-size: 2.5rem;">Tus Citas</h2>
+                <p style="color: var(--muted);">Próximamente podrás agendar y ver tus trabajos aquí.</p>
+                <button class="btn-auth" style="max-width: 250px; margin-top: 3rem;">Agendar Nueva Cita</button>
+            </div>
+        </div>
+
+        <!-- VISTA: LOGIN ADMIN (Oculto/Ofuscado) -->
+        <!-- Acceso vía consola o una combinación de teclas específica para máxima discreción -->
+        <div id="view-admin-login" class="auth-card hidden">
+            <h1 class="auth-title">Acceso Atelier</h1>
+            <span class="auth-sub">Gestión administrativa</span>
+            
+            <div class="form-group">
+                <label for="admin-user">Usuario</label>
+                <input type="text" id="admin-user" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="admin-pass">Contraseña</label>
+                <input type="password" id="admin-pass" class="form-control" maxlength="6">
+            </div>
+            
+            <button class="btn-auth" onclick="handleAdminLogin()">
+                Ingresar al Panel
+            </button>
+        </div>
+    </main>
+</div>
+
+<script src="citas.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+/* ═══════════════════════════════════════════
+   AGUEDITA ATELIER — CITAS SYSTEM CSS
+═══════════════════════════════════════════ */
+
+:root {
+  /* Inherit colors from main design system */
+  --bg:       #080706;
+  --bg2:      #0e0d0b;
+  --bg3:      #151310;
+  --surface:  #1a1714;
+  --gold:     #c9a96e;
+  --gold2:    #e8d5a3;
+  --gold3:    #7a6035;
+  --text:     #f2ead8;
+  --muted:    #a09070;
+  --dim:      #6a5840;
+  --border:   rgba(201,169,110,0.2);
+  --border2:  rgba(201,169,110,0.09);
+  --error:    #e67e22;
+  --success:  #2ecc71;
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] {
+  --bg:       #f5f0e8;
+  --bg2:      #ede6d8;
+  --bg3:      #e4dccb;
+  --surface:  #faf6ef;
+  --gold:     #8a6025;
+  --text:     #18120a;
+  --muted:    #5a4830;
+  --dim:      #7a6040;
+  --border:   rgba(138,96,37,0.25);
+  --border2:  rgba(138,96,37,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.7s ease;
+}
+
+/* ── LAYOUT ─────────────────────────── */
+.app-container {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 1.5rem clamp(1.5rem, 5vw, 5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 0.75rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-badge {
+  width: 44px; height: 44px;
+  border: 1px solid var(--border);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg2);
+  flex-shrink: 0;
+  transition: var(--transition-theme);
+  overflow: hidden;
+}
+.logo-badge::before {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px; right: 3px; bottom: 3px;
+  border: 1px solid var(--border2);
+}
+
+.logo-text-wrap {
+  display: flex; flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+.logo-name {
+  font-family: 'Cormorant', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.logo-sub {
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* ── AUTH VIEWS ──────────────────────── */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  position: relative;
+  overflow: hidden;
+}
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.auth-title {
+  font-family: 'Cormorant', serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.auth-sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-group label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.form-control {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.9rem 1.2rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--surface);
+}
+
+.btn-auth {
+  width: 100%;
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  padding: 1rem;
+  font-family: 'Cormorant SC', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+}
+.btn-auth:hover {
+  background: var(--gold2);
+  transform: translateY(-2px);
+}
+
+.btn-google {
+  background: white;
+  color: #18120a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-google:hover {
+  background: #f0f0f0;
+}
+
+.auth-sep {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: var(--dim);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+.auth-sep::before, .auth-sep::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+.auth-sep:not(:empty)::before { margin-right: 1rem; }
+.auth-sep:not(:empty)::after { margin-left: 1rem; }
+
+.auth-footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.auth-footer a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.auth-footer a:hover { color: var(--gold2); }
+
+/* ── DASHBOARD (Hidden initially) ───── */
+.dashboard-view {
+  display: none; /* JS will toggle */
+  width: 100%;
+  max-width: 1200px;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ─────────────────────── */
+@media (max-width: 600px) {
+  header { padding: 1.2rem; }
+  main { padding: 1rem; }
+  .auth-card { padding: 2rem 1.5rem; }
+}
+
+/* UTILS */
+.hidden { display: none !important; }
